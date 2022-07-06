@@ -11,7 +11,12 @@ ELSEIF()
     set(CMQT_MAIN_SOURCE  ${CMAKE_CURRENT_SOURCE_DIR}/QT5UnixUTF8.cpp)
 endif()
 
-add_cm_library(CMQT "CM" QT5GuiApplication.cpp)
+SET(CMQT_DIALOG_FILES ${CMQT_DIALOG_INCLUDE_PATH}/NameEdit.h
+                      dialog/NameEdit.cpp)
 
-SET(CMQT_LIBRARIES CMQT Qt5::Core Qt5::Gui Qt5::Widgets)
+SOURCE_GROUP("Dialog" FILES ${CMQT_DIALOG_FILES})
+
+add_cm_library(CMQT "CM" ${CMQT_DIALOG_FILES})
+
+target_link_libraries(CMQT PUBLIC Qt5::Core Qt5::Gui Qt5::Widgets)
 
