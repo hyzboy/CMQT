@@ -9,7 +9,8 @@ namespace hgl
         namespace dialog
         {
             NameEdit::NameEdit(const QString &hint_text,const QString &str)
-            {
+            {                
+                setAttribute(Qt::WA_DeleteOnClose);
                 setModal(true);
 
                 QVBoxLayout *layout=new QVBoxLayout(this);
