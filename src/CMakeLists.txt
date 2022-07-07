@@ -1,4 +1,4 @@
-find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS Gui Widgets)
+find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS Gui Widgets Svg Xml)
 
 SET(CMQT_INCLUDE_PATH   ${CMQT_ROOT_INCLUDE_PATH}/hgl/qt)
 
@@ -16,7 +16,10 @@ SET(CMQT_DIALOG_FILES ${CMQT_DIALOG_INCLUDE_PATH}/NameEdit.h
 
 SOURCE_GROUP("Dialog" FILES ${CMQT_DIALOG_FILES})
 
-add_cm_library(CMQT "CM" ${CMQT_DIALOG_FILES})
+SET(CMQT_IMAGE_FILES image/SVGPixmap.cpp)
 
-target_link_libraries(CMQT PUBLIC Qt5::Core Qt5::Gui Qt5::Widgets)
+SOURCE_GROUP("Image" FILES ${CMQT_IMAGE_FILES})
 
+add_cm_library(CMQT "CM" ${CMQT_DIALOG_FILES} ${CMQT_IMAGE_FILES})
+
+target_link_libraries(CMQT PUBLIC   Qt5::Core Qt5::Gui Qt5::Widgets Qt5::Svg Qt5::Xml)
