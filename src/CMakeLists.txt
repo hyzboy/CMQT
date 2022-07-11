@@ -1,4 +1,4 @@
-find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS Gui Widgets Svg Xml)
+find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS Gui Widgets Svg Xml VulkanSupport)
 
 SET(CMQT_INCLUDE_PATH   ${CMQT_ROOT_INCLUDE_PATH}/hgl/qt)
 
@@ -20,6 +20,12 @@ SET(CMQT_IMAGE_FILES image/SVGPixmap.cpp)
 
 SOURCE_GROUP("Image" FILES ${CMQT_IMAGE_FILES})
 
-add_cm_library(CMQT "CM" ${CMQT_DIALOG_FILES} ${CMQT_IMAGE_FILES})
+SET(CMQT_Vulkan_FILES   ${CMQT_INCLUDE_PATH}/QtVulkanWindow.h
+                        vulkan/QtVulkanWindow.cpp
+                        vulkan/QtVulkanSurface.cpp)
 
-target_link_libraries(CMQT PUBLIC   Qt5::Core Qt5::Gui Qt5::Widgets Qt5::Svg Qt5::Xml)
+SOURCE_GROUP("Vulkan" FILES ${CMQT_Vulkan_FILES})
+
+add_cm_library(CMQT "CM" ${CMQT_DIALOG_FILES} ${CMQT_IMAGE_FILES} ${CMQT_Vulkan_FILES})
+
+target_link_libraries(CMQT PUBLIC   Qt5::Core Qt5::Gui Qt5::Widgets Qt5::Svg Qt5::Xml Qt5::VulkanSupport)
