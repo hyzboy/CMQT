@@ -2,7 +2,7 @@ find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS Gui Widgets Svg Xm
 
 SET(CMQT_INCLUDE_PATH   ${CMQT_ROOT_INCLUDE_PATH}/hgl/qt)
 
-SET(CMQT_WIDGET_INCLUDE_PATH   ${CMQT_INCLUDE_PATH}/widget)
+SET(CMQT_WIDGET_INCLUDE_PATH   ${CMQT_INCLUDE_PATH}/widgets)
 SET(CMQT_DIALOG_INCLUDE_PATH   ${CMQT_INCLUDE_PATH}/dialog)
 
 IF(WIN32)
@@ -20,12 +20,17 @@ SET(CMQT_IMAGE_FILES image/SVGPixmap.cpp)
 
 SOURCE_GROUP("Image" FILES ${CMQT_IMAGE_FILES})
 
+SET(CMQT_MENU_SOURCE ${CMQT_WIDGET_INCLUDE_PATH}/TipMenu.h
+                     widgets/TipMenu.cpp)
+
+SOURCE_GROUP("Menu" FILES ${CMQT_MENU_SOURCE})
+
 SET(CMQT_Vulkan_FILES   ${CMQT_INCLUDE_PATH}/QtVulkanWindow.h
                         vulkan/QtVulkanWindow.cpp
                         vulkan/QtVulkanSurface.cpp)
 
 SOURCE_GROUP("Vulkan" FILES ${CMQT_Vulkan_FILES})
 
-add_cm_library(CMQT "CM" ${CMQT_DIALOG_FILES} ${CMQT_IMAGE_FILES} ${CMQT_Vulkan_FILES})
+add_cm_library(CMQT "CM" ${CMQT_DIALOG_FILES} ${CMQT_IMAGE_FILES} ${CMQT_MENU_SOURCE})
 
 target_link_libraries(CMQT PUBLIC   Qt5::Core Qt5::Gui Qt5::Widgets Qt5::Svg Qt5::Xml Qt5::VulkanSupport)
