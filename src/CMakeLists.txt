@@ -1,4 +1,4 @@
-find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS Gui Widgets Svg Xml VulkanSupport)
+find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS Gui Widgets Svg Xml)
 
 SET(CMQT_INCLUDE_PATH   ${CMQT_ROOT_INCLUDE_PATH}/hgl/qt)
 
@@ -31,6 +31,10 @@ SET(CMQT_Vulkan_FILES   ${CMQT_INCLUDE_PATH}/QtVulkanWindow.h
 
 SOURCE_GROUP("Vulkan" FILES ${CMQT_Vulkan_FILES})
 
-add_cm_library(CMQT "CM" ${CMQT_DIALOG_FILES} ${CMQT_IMAGE_FILES} ${CMQT_MENU_SOURCE})
+SET(CMQT_STYLE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/style)
 
-target_link_libraries(CMQT PUBLIC   Qt5::Core Qt5::Gui Qt5::Widgets Qt5::Svg Qt5::Xml Qt5::VulkanSupport)
+include(style/style.cmake)
+
+add_cm_library(CMQT "CM" ${CMQT_DIALOG_FILES} ${CMQT_IMAGE_FILES} ${CMQT_MENU_SOURCE} ${QT_STYLE_FILES})
+
+target_link_libraries(CMQT PUBLIC Qt5::Core Qt5::Gui Qt5::Widgets Qt5::Svg Qt5::Xml)
