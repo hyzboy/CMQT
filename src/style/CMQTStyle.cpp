@@ -1,5 +1,7 @@
 #include<QStringList>
 #include<QStyle>
+#include<QStyleFactory>
+#include<QApplication>
 
 QT_BEGIN_NAMESPACE
 QStyle *CreateBB10BrightStyle();
@@ -36,9 +38,14 @@ namespace hgl
         #undef DEF_QT_EXTRA_STYLE
         };
 
-        const QStringList GetExtraGUIStyleList()
+        const QString GetApplicationStyle()
         {
-            QStringList list;
+            return QApplication::style()->objectName();
+        }
+
+        const QStringList GetStyleList()
+        {
+            QStringList list=QStyleFactory::keys();
 
             for(int i = 0;i < sizeof(qt_extra_styles) / sizeof(CreateQTExtraStyleConfig);i++)
                 list << qt_extra_styles[i].name;
@@ -46,15 +53,29 @@ namespace hgl
             return list;
         }
 
-        QStyle *CreateQTExtraStyle(const QString &style_name)
+        bool SetApplicationStyle(const QString &style_name)
         {
+            QStyle *s=nullptr;
+            
             for(int i = 0;i < sizeof(qt_extra_styles) / sizeof(CreateQTExtraStyleConfig);i++)
             {
                 if(style_name.compare(qt_extra_styles[i].name, Qt::CaseInsensitive) == 0)
-                    return qt_extra_styles[i].create();
+                {
+                    s=qt_extra_styles[i].create();
+                    break;
+                }
             }
 
-            return(nullptr);
+            if(!s)
+                s=QStyleFactory::create(style_name);
+
+            if(s)
+            {
+                QApplication::setStyle(s);
+                return(true);
+            }
+
+            return(false);
         }
     }//namespace qt
 }//namespace hgl
