@@ -17,18 +17,18 @@ file(GLOB QTMotifStyleFiles  ${CMQT_STYLE_PATH}/motif/*.*)
 include_directories(${CMQT_STYLE_PATH}/plastique)
 file(GLOB QTPlastiqueStyleFiles  ${CMQT_STYLE_PATH}/plastique/*.*)
 
-SET(CM_QT_STYLE_FILES ${CMQT_STYLE_PATH}/CMQTStyle.cpp)
+SET(CM_QT_STYLE_SOURCE ${CMQT_STYLE_PATH}/CMQTStyle.cpp)
 
-source_group("QT Style" FILES ${CM_QT_STYLE_FILES})
+source_group("QT Style" FILES ${CM_QT_STYLE_SOURCE})
 source_group("QT Style\\Shared" FILES ${QTStyleSharedFiles})
 source_group("QT Style\\BB10" FILES ${QTBB10StyleFiles})
 source_group("QT Style\\Cleanlooks" FILES ${QTCleanLookStyleFiles})
 source_group("QT Style\\Motif" FILES ${QTMotifStyleFiles})
 source_group("QT Style\\Plastique" FILES ${QTPlastiqueStyleFiles})
 
-SET(QT_STYLE_FILES  ${CM_QT_STYLE_FILES}
-                    ${QTStyleSharedFiles}
-                    ${QTBB10StyleFiles}
-                    ${QTCleanLookStyleFiles}
-                    ${QTMotifStyleFiles}
-                    ${QTPlastiqueStyleFiles})
+SET(CMQT_STYLE_FILES    ${CM_QT_STYLE_SOURCE}
+                        ${QTStyleSharedFiles}
+                        ${QTBB10StyleFiles}
+                        ${QTCleanLookStyleFiles}
+                        ${QTMotifStyleFiles}
+                        ${QTPlastiqueStyleFiles})
