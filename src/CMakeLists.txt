@@ -20,10 +20,10 @@ SET(CMQT_IMAGE_FILES image/SVGPixmap.cpp)
 
 SOURCE_GROUP("Image" FILES ${CMQT_IMAGE_FILES})
 
-SET(CMQT_MENU_SOURCE ${CMQT_WIDGET_INCLUDE_PATH}/TipMenu.h
+SET(CMQT_MENU_FILES ${CMQT_WIDGET_INCLUDE_PATH}/TipMenu.h
                      widgets/TipMenu.cpp)
 
-SOURCE_GROUP("Menu" FILES ${CMQT_MENU_SOURCE})
+SOURCE_GROUP("Menu" FILES ${CMQT_MENU_FILES})
 
 SET(CMQT_Vulkan_FILES   ${CMQT_INCLUDE_PATH}/QtVulkanWindow.h
                         vulkan/QtVulkanWindow.cpp
@@ -35,6 +35,6 @@ SET(CMQT_STYLE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/style)
 
 include(style/style.cmake)
 
-add_cm_library(CMQT "CM" ${CMQT_DIALOG_FILES} ${CMQT_IMAGE_FILES} ${CMQT_MENU_SOURCE} ${QT_STYLE_FILES})
+add_cm_library(CMQT "CM" ${CMQT_DIALOG_FILES} ${CMQT_IMAGE_FILES} ${CMQT_MENU_FILES} ${CMQT_STYLE_FILES})
 
 target_link_libraries(CMQT PUBLIC Qt5::Core Qt5::Gui Qt5::Widgets Qt5::Svg Qt5::Xml)
