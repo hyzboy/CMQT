@@ -3,6 +3,8 @@
 #include<QStyleFactory>
 #include<QApplication>
 
+#ifdef USE_EXTRA_QT_STYLE
+
 QT_BEGIN_NAMESPACE
 QStyle *CreateBB10BrightStyle();
 QStyle *CreateBB10DarkStyle();
@@ -12,12 +14,15 @@ QStyle *CreateMotifStyle();
 QStyle *CreatePlastiqueStyle();
 QT_END_NAMESPACE
 
+#endif//USE_EXTRA_QT_STYLE
+
 namespace hgl
 {
     namespace qt
     {
         QT_USE_NAMESPACE
             
+#ifdef USE_EXTRA_QT_STYLE
         struct CreateQTExtraStyleConfig
         {
             QString name;
@@ -28,8 +33,8 @@ namespace hgl
         {
         #define DEF_QT_EXTRA_STYLE(name)    {#name,Create##name##Style},
 
-            DEF_QT_EXTRA_STYLE(BB10Bright)
-            DEF_QT_EXTRA_STYLE(BB10Dark)
+            //DEF_QT_EXTRA_STYLE(BB10Bright)
+            //DEF_QT_EXTRA_STYLE(BB10Dark)
             DEF_QT_EXTRA_STYLE(Cleanlooks)
             DEF_QT_EXTRA_STYLE(CDE)
             DEF_QT_EXTRA_STYLE(Motif)
@@ -37,6 +42,7 @@ namespace hgl
 
         #undef DEF_QT_EXTRA_STYLE
         };
+#endif//USE_EXTRA_QT_STYLE
 
         const QString GetApplicationStyle()
         {
@@ -46,9 +52,11 @@ namespace hgl
         const QStringList GetStyleList()
         {
             QStringList list=QStyleFactory::keys();
-
+            
+#ifdef USE_EXTRA_QT_STYLE
             for(int i = 0;i < sizeof(qt_extra_styles) / sizeof(CreateQTExtraStyleConfig);i++)
                 list << qt_extra_styles[i].name;
+#endif//USE_EXTRA_QT_STYLE
 
             return list;
         }
@@ -57,6 +65,7 @@ namespace hgl
         {
             QStyle *s=nullptr;
             
+#ifdef USE_EXTRA_QT_STYLE
             for(int i = 0;i < sizeof(qt_extra_styles) / sizeof(CreateQTExtraStyleConfig);i++)
             {
                 if(style_name.compare(qt_extra_styles[i].name, Qt::CaseInsensitive) == 0)
@@ -67,6 +76,7 @@ namespace hgl
             }
 
             if(!s)
+#endif//USE_EXTRA_QT_STYLE
                 s=QStyleFactory::create(style_name);
 
             if(s)

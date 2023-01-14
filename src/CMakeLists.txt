@@ -1,4 +1,4 @@
-find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS Gui Widgets Svg Xml)
+find_package(Qt${CM_QT_MAJOR_VERSION} ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS Gui Widgets Svg Xml)
 
 SET(CMQT_INCLUDE_PATH   ${CMQT_ROOT_INCLUDE_PATH}/hgl/qt)
 
@@ -37,4 +37,4 @@ include(style/style.cmake)
 
 add_cm_library(CMQT "CM" ${CMQT_DIALOG_FILES} ${CMQT_IMAGE_FILES} ${CMQT_MENU_FILES} ${CMQT_STYLE_FILES})
 
-target_link_libraries(CMQT PUBLIC Qt5::Core Qt5::Gui Qt5::Widgets Qt5::Svg Qt5::Xml)
+target_link_libraries(CMQT PUBLIC Qt${CM_QT_MAJOR_VERSION}::Core Qt${CM_QT_MAJOR_VERSION}::Gui Qt${CM_QT_MAJOR_VERSION}::Widgets Qt${CM_QT_MAJOR_VERSION}::Svg Qt${CM_QT_MAJOR_VERSION}::Xml)
