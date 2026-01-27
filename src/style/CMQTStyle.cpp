@@ -1,4 +1,4 @@
-#include<QStringList>
+﻿#include<QStringList>
 #include<QStyle>
 #include<QStyleFactory>
 #include<QApplication>
@@ -21,7 +21,7 @@ namespace hgl
     namespace qt
     {
         QT_USE_NAMESPACE
-            
+
 #ifdef USE_EXTRA_QT_STYLE
         struct CreateQTExtraStyleConfig
         {
@@ -52,7 +52,7 @@ namespace hgl
         const QStringList GetStyleList()
         {
             QStringList list=QStyleFactory::keys();
-            
+
 #ifdef USE_EXTRA_QT_STYLE
             for(int i = 0;i < sizeof(qt_extra_styles) / sizeof(CreateQTExtraStyleConfig);i++)
                 list << qt_extra_styles[i].name;
@@ -64,7 +64,7 @@ namespace hgl
         bool SetApplicationStyle(const QString &style_name)
         {
             QStyle *s=nullptr;
-            
+
 #ifdef USE_EXTRA_QT_STYLE
             for(int i = 0;i < sizeof(qt_extra_styles) / sizeof(CreateQTExtraStyleConfig);i++)
             {

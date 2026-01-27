@@ -1,4 +1,4 @@
-#include<hgl/qt/SVGPixmap.h>
+﻿#include<hgl/qt/SVGPixmap.h>
 #include<QFile>
 #include<QtXml/QDomDocument>
 #include<QPainter>
@@ -40,7 +40,7 @@ namespace hgl
             svg->render(&pixPainter);
 
             return pix;
-        }        
+        }
 
         QPixmap LoadSVG(const QString &filename,const uint size)
         {

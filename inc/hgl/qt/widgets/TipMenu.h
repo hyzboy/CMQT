@@ -1,4 +1,4 @@
-#ifndef HGL_QT_TIP_MENU_INCLUDE
+﻿#ifndef HGL_QT_TIP_MENU_INCLUDE
 #define HGL_QT_TIP_MENU_INCLUDE
 
 #include<QMenuBar>

@@ -1,4 +1,4 @@
-#ifndef HGL_QT5_MAIN_INCLUDE
+﻿#ifndef HGL_QT5_MAIN_INCLUDE
 #define HGL_QT5_MAIN_INCLUDE
 
 #include<hgl/platform/QT5Application.h>

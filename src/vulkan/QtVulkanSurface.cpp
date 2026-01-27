@@ -1,4 +1,4 @@
-#include<QWindow>
+﻿#include<QWindow>
 #include<QVulkanInstance>
 
 namespace hgl

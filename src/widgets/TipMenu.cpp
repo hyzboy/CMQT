@@ -1,4 +1,4 @@
-#include<hgl/qt/widgets/TipMenu.h>
+﻿#include<hgl/qt/widgets/TipMenu.h>
 #include<QToolTip>
 #include<QHelpEvent>
 

@@ -1,4 +1,4 @@
-#include<hgl/qt/QtVulkanWindow.h>
+﻿#include<hgl/qt/QtVulkanWindow.h>
 
 namespace hgl
 {

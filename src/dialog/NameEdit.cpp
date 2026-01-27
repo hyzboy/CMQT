@@ -9,7 +9,7 @@ namespace hgl
         namespace dialog
         {
             NameEdit::NameEdit(const QString &hint_text,const QString &str)
-            {                
+            {
                 setAttribute(Qt::WA_DeleteOnClose);
                 setModal(true);
 
@@ -40,7 +40,7 @@ namespace hgl
 
                     layout->addWidget(hint_label);
                 }
-    
+
                 //按钮区
                 {
                     QWidget *button_widget=new QWidget(this);
@@ -57,7 +57,7 @@ namespace hgl
                         QPushButton *cancel_button=new QPushButton(button_widget);
                         cancel_button->setText(tr("Cancel"));
                         connect(cancel_button,&QPushButton::clicked,this,&NameEdit::OnCancelClicked);
-            
+
                         button_layout->addWidget(cancel_button,0,Qt::AlignLeft);
                     }
 
