@@ -35,6 +35,16 @@ SET(CMQT_STYLE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/style)
 
 include(style/style.cmake)
 
-add_cm_library(CMQT "CM" ${CMQT_ROOT_INCLUDE_PATH} ${CMQT_DIALOG_FILES} ${CMQT_IMAGE_FILES} ${CMQT_MENU_FILES} ${CMQT_STYLE_FILES})
+SET(CMQT_WINDOW_FILES  ${CMQT_INCLUDE_PATH}/QtWindow.h
+                       QtWindow.cpp)
+
+SOURCE_GROUP("Window" FILES ${CMQT_WINDOW_FILES})
+
+add_cm_library(CMQT "CM" ${CMQT_ROOT_INCLUDE_PATH} ${CMQT_DIALOG_FILES} ${CMQT_IMAGE_FILES} ${CMQT_MENU_FILES} ${CMQT_STYLE_FILES} ${CMQT_WINDOW_FILES})
 
 target_link_libraries(CMQT PUBLIC Qt${CM_QT_MAJOR_VERSION}::Core Qt${CM_QT_MAJOR_VERSION}::Gui Qt${CM_QT_MAJOR_VERSION}::Widgets Qt${CM_QT_MAJOR_VERSION}::Svg Qt${CM_QT_MAJOR_VERSION}::Xml)
+
+# CMQT 的公开头依赖 CMCore（hgl::Window 等），传递链接保证 include/链接正确
+if(TARGET CMCore)
+    target_link_libraries(CMQT PUBLIC CMCore)
+endif()
