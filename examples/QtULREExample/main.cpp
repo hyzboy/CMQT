@@ -4,7 +4,7 @@
 //   QtWindow(hgl::Window 适配) → AppFramework::SetExternalWindow 注入
 //   → ULRE Vulkan 渲染进 QWindow → QTimer 驱动 WorkManager::RunFrame
 //
-// 渲染内容：复用 example/Basic/DrawTriangle.cpp 的 TestApp（ECS 三角形）
+// 渲染内容：复用 example/GettingStarted/DrawTriangle.cpp 的 TestApp（ECS 三角形）
 // 换示例：改 #include 目标文件（需各自链接依赖与工作目录资源）
 
 #include <QApplication>
