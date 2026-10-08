@@ -1,4 +1,4 @@
-﻿// QtULREExample：Qt 窗口外壳（菜单）+ 内部运行 ULRE 引擎示例
+// QtULREExample：Qt 窗口外壳（菜单）+ 内部运行 ULRE 引擎示例
 //
 // 演示窗口后端抽象：
 //   QtWindow(hgl::Window 适配) → AppFramework::SetExternalWindow 注入
@@ -72,14 +72,10 @@ int main(int argc,char *argv[])
     main_win.setCentralWidget(container);
 
     // ── ECS 世界 + WorkObject（同 RunFramework<TestApp> 初始化流程）──
-    std::shared_ptr<ecs::ECSContext> world;
-    if(app.GetECSContext())
-        world=std::shared_ptr<ecs::ECSContext>(app.GetECSContext(),[](ecs::ECSContext *){});
-
     WorkManager wm(&app);
 
     auto *wo=new TestApp();
-    wo->_InitializeWithECSContext_INTERNAL_DO_NOT_CALL(world);
+    wo->SetECSContext(app.GetECSContext());
 
     if(!wo->Init())
     {
@@ -93,7 +89,6 @@ int main(int argc,char *argv[])
     frame_timer.setInterval(16);
 
     QObject::connect(&frame_timer,&QTimer::timeout,[&]{
-        app.Tick();
         wm.RunFrame(wo);
 
         if(wo->IsDestroy())
